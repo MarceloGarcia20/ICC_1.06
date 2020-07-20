@@ -1,7 +1,7 @@
 import pygame
 import random
 
-#Serpiente
+#Serpiente cuerpo
 class cuerpo:
     def __init__(self,ventana):
         self.x = 0
@@ -23,6 +23,7 @@ class cuerpo:
             self.y -= 10
 
 
+#Manzanas_comida
 class manzanas:
     def __init__(self, ventana):
         self.x = random.randrange(40)*10
@@ -49,8 +50,17 @@ def seguir_cabeza():
         serpiente[len(serpiente) - i - 1].y = serpiente[len(serpiente) - i - 2].y
 
 
+#funcion principal
 def main():
-    global serpiente, comida, score
+    global serpiente, comida, score, instrucciones, puntajes, indice
+    #
+    instrucciones = open("INSTRUCCIONES.txt","r")
+    for cadena in instrucciones:
+        print(cadena)
+
+    instrucciones.close()
+    print()
+    #
     ventana = pygame.display.set_mode((400, 400))
     ventana.fill((0, 0, 0))
     comida = manzanas(ventana)
@@ -81,6 +91,7 @@ def main():
             serpiente.append(cuerpo(ventana))
             score += 1
         seguir_cabeza()
+
         # Traspasar muros
         if serpiente[0].x >= 400:
             print(f"Game over!    Score: ", score)
@@ -98,6 +109,35 @@ def main():
             print(f"Game over!    Score: ", score)
             run = False
             #serpiente[0].y = 390
+
+
+    puntajes = []
+
+    historial = open("Puntajes.txt", "a")
+    historial.write("Puntaje: "+ str(score))
+    historial.write("\n")
+    historial.close()
+
+    historial = open("Puntajes.txt", "r")
+    for x in historial:
+        letras, numerot = x.split(":")
+        numero = int(numerot)
+        puntajes.append(numero)
+
+    historial.close()
+
+    print()
+
+    def indice_mayor(lista):
+        mayor = lista[0]
+        indice = 0
+        for i in range(len(lista)):
+            if lista[i] > mayor:
+                mayor = lista[i]
+                indice = i
+        return indice
+
+    print("MAYOR PUNTAJE HASTA AHORA: ", puntajes[indice_mayor(puntajes)])
 
 
 
