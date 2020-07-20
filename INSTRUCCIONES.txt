@@ -1,0 +1,8 @@
+BIENVENIDO AL JUEGO DE SNAKE!!!
+Este juego consiste basicamente en comer todas las manzanas que puedas controlando a la serpiente, por cada manzana que
+comas el tamaño de la serpiente aumentara, por lo que la dificultad sera mayor. La serpiente morira si es que su cabeza
+choca contra una de las partes del muro del contorno.
+1 manzana = 1 punto
+Toma el control de la serpiente con las flechas direccionales, y come todas las manzanas.
+Quien consiga mas puntos sera el ganador.
+EXITOS!!!
